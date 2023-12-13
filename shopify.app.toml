@@ -1,0 +1,27 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+name = "dermoteca-appointments"
+client_id = "c6b29065fcc1f2ccc8b1dff4d9f22c0a"
+application_url = "https://64da-177-236-76-62.ngrok-free.app"
+embedded = true
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = "write_products,write_orders,read_orders,read_customers,unauthenticated_read_product_listings,unauthenticated_read_checkouts"
+
+[auth]
+redirect_urls = [
+  "https://64da-177-236-76-62.ngrok-free.app/auth/callback",
+  "https://64da-177-236-76-62.ngrok-free.app/auth/shopify/callback",
+  "https://64da-177-236-76-62.ngrok-free.app/api/auth/callback"
+]
+
+[webhooks]
+api_version = "2023-10"
+
+[pos]
+embedded = false
+
+[build]
+automatically_update_urls_on_dev = true
+dev_store_url = "hector-development-online-store.myshopify.com"
