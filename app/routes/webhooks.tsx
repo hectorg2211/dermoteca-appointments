@@ -1,5 +1,6 @@
 import type { ActionFunctionArgs } from "@remix-run/node";
 import { authenticate } from "../shopify.server";
+import { getEvents, setEvent } from "../../utils/calendar";
 import db from "../db.server";
 
 export const action = async ({ request }: ActionFunctionArgs) => {
@@ -20,9 +21,18 @@ export const action = async ({ request }: ActionFunctionArgs) => {
       break;
     case "PRODUCTS_UPDATE":
       console.log("⭐ A product has been updated");
+      // await getEvents();
       break;
     case "ORDERS_PAID":
       console.log("⭐ A product has been purchased");
+      // Identify if the paid items contains an appointment product
+      const appointmentProduct = payload?.line_items?.find(
+        (product: any) => product.properties.length > 0,
+      );
+
+      if (appointmentProduct) {
+        await setEvent(appointmentProduct.properties, appointmentProduct.title);
+      }
       break;
     case "CUSTOMERS_DATA_REQUEST":
     case "CUSTOMERS_REDACT":
