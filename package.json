@@ -2,7 +2,7 @@
   "name": "dermoteca-appointments",
   "private": true,
   "scripts": {
-    "build": "tsc && remix build",
+    "build": "NODE_ENV=production remix build",
     "predev": "prisma generate && prisma migrate deploy",
     "dev": "shopify app dev --tunnel-url=https://64da-177-236-76-62.ngrok-free.app:3000",
     "config:link": "shopify app config link",
@@ -11,7 +11,7 @@
     "deploy": "shopify app deploy",
     "config:use": "shopify app config use",
     "env": "shopify app env",
-    "start": "remix-serve build/index.js",
+    "start": "remix-serve ./build/index.js",
     "docker-start": "npm run setup && npm run start",
     "setup": "prisma generate && prisma migrate deploy",
     "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint .",

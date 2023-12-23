@@ -30,6 +30,8 @@ export const action = async ({ request }: ActionFunctionArgs) => {
         (product: any) => product.properties.length > 0,
       );
 
+      console.log(appointmentProduct);
+
       if (appointmentProduct) {
         await setEvent(appointmentProduct.properties, appointmentProduct.title);
       }

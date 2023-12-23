@@ -1,0 +1,28 @@
+# fly.toml app configuration file generated for dermoteca-appointments on 2023-12-13T15:38:57-08:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = "dermoteca-appointments"
+primary_region = "sjc"
+
+[build]
+
+[http_service]
+  internal_port = 8081
+  force_https = true
+  auto_stop_machines = false
+  auto_start_machines = true
+  min_machines_running = 2
+  processes = ["app"]
+
+[env]
+  PORT = "8081"
+  SCOPES = "write_products,write_orders,read_orders,read_customers,unauthenticated_read_product_listings,unauthenticated_read_checkouts"
+  SHOPIFY_API_KEY = "c6b29065fcc1f2ccc8b1dff4d9f22c0a"
+  SHOPIFY_APP_URL = "https://dermoteca-appointments.fly.dev"
+
+[[vm]]
+  cpu_kind = "shared"
+  cpus = 1
+  memory_mb = 1024
